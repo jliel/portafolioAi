@@ -1,4 +1,4 @@
-import { User, CheckCircle2, ShieldCheck, Zap, Compass } from 'lucide-react';
+import { User, CheckCircle2, ShieldCheck, Zap, Compass, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const CARD_ICONS = [
@@ -40,6 +40,13 @@ export const AboutSection = () => {
                 <div className="flex items-center justify-between text-cyber-text">
                   <span className="text-cyber-text-muted">{t.about.locationLabel}</span>
                   <span>{t.about.locationVal}</span>
+                </div>
+                <div className="flex items-center justify-between text-cyber-text">
+                  <span className="text-cyber-text-muted flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-cyber-accent" />
+                    <span>{t.about.languagesLabel}</span>
+                  </span>
+                  <span className="text-cyber-text font-medium">{t.about.languagesVal}</span>
                 </div>
                 <div className="flex items-center justify-between text-cyber-text">
                   <span className="text-cyber-text-muted">{t.about.focusLabel}</span>
