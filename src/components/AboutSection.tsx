@@ -1,6 +1,16 @@
 import { User, CheckCircle2, ShieldCheck, Zap, Compass } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
+const CARD_ICONS = [
+  <Zap className="w-4 h-4 text-cyber-accent" />,
+  <Compass className="w-4 h-4 text-cyber-accent" />,
+  <ShieldCheck className="w-4 h-4 text-cyber-accent" />,
+  <CheckCircle2 className="w-4 h-4 text-cyber-accent" />,
+];
 
 export const AboutSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="sobre-mi" className="py-20 border-b border-cyber-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,30 +25,29 @@ export const AboutSection = () => {
                 <User className="w-8 h-8 text-cyber-accent" />
               </div>
 
-              <h3 className="text-2xl font-bold text-cyber-text tracking-tight mb-2">
-                jliel
+              <h3 className="text-2xl font-bold text-cyber-text tracking-tight mb-1">
+                {t.about.name}
               </h3>
               <p className="text-xs font-mono text-cyber-accent mb-4">
-                AI Agent Engineer &amp; Full Stack Developer
+                {t.about.role}
               </p>
               
               <p className="text-sm text-cyber-text-muted leading-relaxed mb-6">
-                Especializado en diseñar sistemas donde la inteligencia artificial va más allá de un simple chatbot:
-                construyo entidades de software capaces de razonar, planificar, ejecutar código de manera segura y coordinarse en equipo para resolver problemas complejos.
+                {t.about.bio}
               </p>
 
               <div className="space-y-3 font-mono text-xs border-t border-cyber-border pt-4">
                 <div className="flex items-center justify-between text-cyber-text">
-                  <span className="text-cyber-text-muted">Ubicación:</span>
-                  <span>Remoto / Global</span>
+                  <span className="text-cyber-text-muted">{t.about.locationLabel}</span>
+                  <span>{t.about.locationVal}</span>
                 </div>
                 <div className="flex items-center justify-between text-cyber-text">
-                  <span className="text-cyber-text-muted">Enfoque:</span>
-                  <span className="text-cyber-accent">Multi-Agent Systems</span>
+                  <span className="text-cyber-text-muted">{t.about.focusLabel}</span>
+                  <span className="text-cyber-accent font-semibold">{t.about.focusVal}</span>
                 </div>
                 <div className="flex items-center justify-between text-cyber-text">
-                  <span className="text-cyber-text-muted">Disponibilidad:</span>
-                  <span>Inmediata</span>
+                  <span className="text-cyber-text-muted">{t.about.availableLabel}</span>
+                  <span>{t.about.availableVal}</span>
                 </div>
               </div>
             </div>
@@ -48,53 +57,28 @@ export const AboutSection = () => {
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent">
                 <Compass className="w-4 h-4" />
-                <span>FILOSOFÍA // INGENIERÍA DE AGENTES</span>
+                <span>{t.about.badge}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-cyber-text tracking-tight">
-                De Modelos Predictivos a Agentes Proactivos
+                {t.about.headline}
               </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-xl border border-cyber-border bg-cyber-surface space-y-2">
-                <div className="flex items-center gap-2 font-bold text-cyber-text text-sm">
-                  <Zap className="w-4 h-4 text-cyber-accent" />
-                  <span>Razonamiento Determinista</span>
+              {t.about.cards.map((card, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 rounded-xl border border-cyber-border bg-cyber-surface space-y-2 hover:border-cyber-accent transition-colors"
+                >
+                  <div className="flex items-center gap-2 font-bold text-cyber-text text-sm">
+                    {CARD_ICONS[idx % CARD_ICONS.length]}
+                    <span>{card.title}</span>
+                  </div>
+                  <p className="text-xs text-cyber-text-muted leading-relaxed">
+                    {card.description}
+                  </p>
                 </div>
-                <p className="text-xs text-cyber-text-muted leading-relaxed">
-                  Diseño de grafos de estados y esquemas tipados (Pydantic / Zod) que garantizan salidas estructuradas y trazabilidad completa.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-cyber-border bg-cyber-surface space-y-2">
-                <div className="flex items-center gap-2 font-bold text-cyber-text text-sm">
-                  <ShieldCheck className="w-4 h-4 text-cyber-accent" />
-                  <span>Seguridad &amp; Sandboxing</span>
-                </div>
-                <p className="text-xs text-cyber-text-muted leading-relaxed">
-                  Ejecución controlada de herramientas y entornos aislados para evitar fugas de datos y ejecuciones no autorizadas.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-cyber-border bg-cyber-surface space-y-2">
-                <div className="flex items-center gap-2 font-bold text-cyber-text text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-cyber-accent" />
-                  <span>Auto-Reflexión (Critique)</span>
-                </div>
-                <p className="text-xs text-cyber-text-muted leading-relaxed">
-                  Implementación de bucles de auto-corrección donde los agentes evalúan su propio código o respuesta antes de emitir un resultado final.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-cyber-border bg-cyber-surface space-y-2">
-                <div className="flex items-center gap-2 font-bold text-cyber-text text-sm">
-                  <Zap className="w-4 h-4 text-cyber-accent" />
-                  <span>RAG Semántico Avanzado</span>
-                </div>
-                <p className="text-xs text-cyber-text-muted leading-relaxed">
-                  Estrategias de enrutamiento contextual, compresión de contexto e indexación jerárquica para eliminar alucinaciones.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 

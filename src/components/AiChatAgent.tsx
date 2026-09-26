@@ -1,57 +1,68 @@
 import { useState, useRef, useEffect } from 'react';
 import { Bot, X, Send, Sparkles, RefreshCw } from 'lucide-react';
 import type { ChatMessage } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface AiChatAgentProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const INITIAL_MESSAGES: ChatMessage[] = [
-  {
-    id: 'welcome',
-    sender: 'agent',
-    text: '¡Hola! Soy jliel-Agent, el asistente autónomo de este portafolio. Estoy aquí para responder preguntas sobre la experiencia técnica de jliel, sus proyectos de IA agéntica, arquitectura de software o cómo ponerte en contacto. ¿Sobre qué te gustaría indagar?',
-    timestamp: 'Ahora'
-  }
-];
-
-const SUGGESTED_PROMPTS = [
-  '¿Qué proyectos con agentes ha desarrollado?',
-  '¿Cuál es su stack técnico principal?',
-  '¿Cómo está construido este portafolio?',
-  '¿Cómo puedo contactar a jliel?'
-];
-
-// Base de conocimiento autónoma del agente
-function generateAgentResponse(query: string): string {
+// Base de conocimiento autónoma bilingüe
+function generateAgentResponse(query: string, lang: 'es' | 'en'): string {
   const q = query.toLowerCase();
 
-  if (q.includes('proyecto') || q.includes('agente') || q.includes('desarrollado')) {
-    return 'jliel se especializa en arquitecturas agénticas avanzadas. Entre sus proyectos clave destacan:\n\n1. **Multi-Agent Code Auditor:** Orquestación con LangGraph donde agentes especializados analizan seguridad, rendimiento y tests de código.\n2. **Autonomous Research Agent:** Agente con loop ReAct, navegación web autónoma y memoria vectorial con ChromaDB.\n3. **Enterprise Contextual RAG:** Asistente con búsqueda híbrida densa/esparsa y reranking para soporte de operaciones.\n\nPuedes ver más detalles en la sección de Proyectos.';
+  if (lang === 'en') {
+    if (q.includes('flagship') || q.includes('project') || q.includes('agent') || q.includes('webcrafter')) {
+      return 'jliel’s flagship agent project is **WebCrafter Studio: Multi-Agent Web Builder**:\n\n- **Purpose:** Bridges his current AI web generation work with autonomous multi-agent engineering.\n- **Orchestration:** Built with LangGraph & Python. Features a Supervisor Agent, UX Specifier, React Coder, and an A11y Validator in closed feedback loops.\n- **Outcome:** Generates accessible, responsive React 19 + Tailwind web apps with live sandboxed previews.\n\nHe also has real-world projects in TypeScript (`ShoppingCart`, `PetRegistry`), C# (`learning_asp`), and Python (`red_neuronal`, `cs50_projects`).';
+    }
+
+    if (q.includes('java') || q.includes('c#') || q.includes('python') || q.includes('stack') || q.includes('desktop') || q.includes('experience')) {
+      return 'jliel has a strong polyglot background:\n\n- **Languages:** Java (OOP, algorithmics), C# (.NET, desktop & backend APIs), TypeScript / JavaScript (React 19, web apps), Python (AI agent frameworks, ML & vision).\n- **Agent Frameworks:** LangGraph, CrewAI, AutoGen, LlamaIndex, Google Gemini API.\n- **Web with AI:** Currently builds high-performance websites using AI workflows, optimizing UX, responsiveness, and clean code.';
+    }
+
+    if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('github')) {
+      return 'You can reach jliel directly:\n- **Email:** kiritobaz@gmail.com\n- **GitHub:** https://github.com/jliel\n- **Project Repository:** https://github.com/jliel/portafolioAi\n\nHe is ready for new engineering challenges and consulting!';
+    }
+
+    return `I received your question about "${query}". As jliel's autonomous agent, I can confirm he merges classical software engineering (Java, C#, Python, TS) with modern AI web building and multi-agent workflows. What specific topic would you like to explore further?`;
   }
 
-  if (q.includes('stack') || q.includes('tecnología') || q.includes('herramienta') || q.includes('lenguaje')) {
-    return 'El stack principal de jliel comprende:\n- **Agentes & IA:** LangGraph, CrewAI, AutoGen, LlamaIndex, Gemini API, Claude API, OpenAI.\n- **Backend & Datos:** Python (FastAPI, AsyncIO), TypeScript, ChromaDB, Qdrant, PostgreSQL, Docker.\n- **Frontend:** React 19, Vite, TypeScript, Tailwind CSS con sistemas de diseño accesibles.';
+  // Spanish answers
+  if (q.includes('insignia') || q.includes('proyecto') || q.includes('agente') || q.includes('webcrafter')) {
+    return 'El proyecto insignia con agentes de jliel es **WebCrafter Studio: Multi-Agent Web Builder**:\n\n- **Propósito:** Conecta directamente su labor actual de creación web con IA con una arquitectura multi-agente rigurosa.\n- **Orquestación:** Desarrollado con LangGraph y Python. Incluye un Supervisor Agent, Especificador UX, Programador React y Validador A11y en bucle de retroalimentación cerrada.\n- **Resultado:** Generación de código React 19 + Tailwind accesible y ejecutable en sandbox con vista previa en vivo.\n\nAdemás cuenta con repositorios reales en GitHub como `ShoppingCart`, `PetRegistry`, backend en C# (`learning_asp`) y redes neuronales en Python (`red_neuronal`).';
   }
 
-  if (q.includes('portafolio') || q.includes('construido') || q.includes('diseño') || q.includes('cyber')) {
-    return 'Este portafolio está construido con **React + Vite + TypeScript** y **Tailwind CSS**. Sigue la especificación de diseño **Cyber Minimalista (RNF-01)**:\n- Modo Oscuro por defecto (fondo #121212, acento #00FF66).\n- Modo Claro alternativo (fondo #F9FAFB, acento #059669).\n- Cumplimiento de accesibilidad WCAG AA/AAA y variables CSS dinámicas.';
+  if (q.includes('java') || q.includes('c#') || q.includes('python') || q.includes('stack') || q.includes('escritorio') || q.includes('experiencia')) {
+    return 'jliel cuenta con un perfil técnico políglota y versátil:\n\n- **Lenguajes:** Java (orientación a objetos y algoritmos), C# (.NET, software de escritorio y APIs), TypeScript/JavaScript (React 19, desarrollo web moderno), Python (agentes de IA, machine learning y visión computacional).\n- **Ecosistema de Agentes:** LangGraph, CrewAI, AutoGen, LlamaIndex, Gemini API, ChromaDB.\n- **Creación Web con IA:** Actualmente crea sitios web aprovechando herramientas de IA, garantizando código limpio, diseño adaptativo y alta conversión.';
   }
 
   if (q.includes('contacto') || q.includes('correo') || q.includes('email') || q.includes('github') || q.includes('contratar')) {
-    return 'Puedes ponerte en contacto directo con jliel a través de:\n- **Correo electrónico:** kiritobaz@gmail.com\n- **GitHub:** https://github.com/jliel\n- **Repositorio del proyecto:** https://github.com/jliel/portafolioAi\n\n¡Está disponible para nuevos retos y colaboraciones técnicas!';
+    return 'Puedes contactar directamente a jliel en:\n- **Correo electrónico:** kiritobaz@gmail.com\n- **GitHub:** https://github.com/jliel\n- **Repositorio:** https://github.com/jliel/portafolioAi\n\n¡Está disponible de inmediato para proyectos y colaboraciones técnicas!';
   }
 
-  return `Entiendo tu consulta sobre "${query}". Como agente de jliel, te comento que cuenta con amplia experiencia diseñando flujos cognitivos, integración de LLMs y automatización inteligente con Python y TypeScript. ¿Te gustaría saber más sobre sus proyectos, stack o formas de contacto?`;
+  return `Comprendo tu inquietud sobre "${query}". Como asistente de jliel, te comparto que une la solidez del desarrollo de software tradicional (Java, C#, Python, TypeScript) con la innovación de creación web con IA y agentes autónomos. ¿Deseas saber más sobre sus proyectos, stack o formas de contacto?`;
 }
 
 export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
-  const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
+  const { t, language } = useLanguage();
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Initialize or re-initialize welcome message on language change
+  useEffect(() => {
+    setMessages([
+      {
+        id: 'welcome',
+        sender: 'agent',
+        text: t.agent.welcomeMsg,
+        timestamp: language === 'en' ? 'Now' : 'Ahora',
+      }
+    ]);
+  }, [language, t.agent.welcomeMsg]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -79,9 +90,8 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
     if (!textToSend) setInput('');
     setIsTyping(true);
 
-    // Simular tiempo de inferencia y respuesta agéntica fluida
     setTimeout(() => {
-      const responseText = generateAgentResponse(messageText);
+      const responseText = generateAgentResponse(messageText, language);
       const agentMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         sender: 'agent',
@@ -90,11 +100,18 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
       };
       setMessages(prev => [...prev, agentMessage]);
       setIsTyping(false);
-    }, 600);
+    }, 550);
   };
 
   const handleReset = () => {
-    setMessages(INITIAL_MESSAGES);
+    setMessages([
+      {
+        id: 'welcome',
+        sender: 'agent',
+        text: t.agent.welcomeMsg,
+        timestamp: language === 'en' ? 'Now' : 'Ahora',
+      }
+    ]);
   };
 
   if (!isOpen) {
@@ -102,8 +119,8 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
       <button
         onClick={onClose}
         className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-cyber-accent text-cyber-accent-contrast shadow-2xl hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-cyber-accent/50 group cursor-pointer"
-        aria-label="Abrir asistente de IA"
-        title="Chatear con el Agente de IA"
+        aria-label="Abrir asistente de IA / Open AI Assistant"
+        title={t.nav.aiAgent}
       >
         <div className="relative">
           <Bot className="w-6 h-6" />
@@ -118,8 +135,8 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Ventana de chat con el Agente de IA"
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[580px] max-h-[85vh] rounded-2xl border border-cyber-border bg-cyber-surface shadow-2xl flex flex-col overflow-hidden text-left font-sans"
+      aria-label="AI Chat Agent Window"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[440px] h-[590px] max-h-[85vh] rounded-2xl border border-cyber-border bg-cyber-surface shadow-2xl flex flex-col overflow-hidden text-left font-sans"
     >
       {/* Header */}
       <div className="p-4 border-b border-cyber-border bg-cyber-bg/80 flex items-center justify-between">
@@ -129,12 +146,12 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold text-cyber-text">jliel-Agent</span>
+              <span className="font-mono text-xs font-bold text-cyber-text">{t.agent.title}</span>
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyber-surface border border-cyber-border text-cyber-accent">
-                ONLINE
+                {t.agent.online}
               </span>
             </div>
-            <p className="text-[11px] text-cyber-text-muted">Asistente agéntico interactivo</p>
+            <p className="text-[11px] text-cyber-text-muted">{t.agent.subtitle}</p>
           </div>
         </div>
 
@@ -142,16 +159,16 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
           <button
             onClick={handleReset}
             className="p-1.5 rounded-lg text-cyber-text-muted hover:text-cyber-accent hover:bg-cyber-surface transition-colors cursor-pointer"
-            title="Reiniciar conversación"
-            aria-label="Reiniciar conversación"
+            title="Reset"
+            aria-label="Reset chat"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg text-cyber-text-muted hover:text-cyber-accent hover:bg-cyber-surface transition-colors cursor-pointer"
-            title="Cerrar chat"
-            aria-label="Cerrar ventana de chat"
+            title="Close"
+            aria-label="Close chat window"
           >
             <X className="w-4 h-4" />
           </button>
@@ -181,9 +198,9 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
         ))}
 
         {isTyping && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-cyber-bg border border-cyber-border max-w-[70%]">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-cyber-bg border border-cyber-border max-w-[75%]">
             <Sparkles className="w-3.5 h-3.5 text-cyber-accent animate-spin" />
-            <span className="text-cyber-text-muted font-mono text-[11px]">Agente razonando respuesta...</span>
+            <span className="text-cyber-text-muted font-mono text-[11px]">{t.agent.typing}</span>
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -191,7 +208,7 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
 
       {/* Suggested quick chips */}
       <div className="px-3 py-2 border-t border-cyber-border bg-cyber-bg/40 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-        {SUGGESTED_PROMPTS.map((prompt, idx) => (
+        {t.agent.suggestedPrompts.map((prompt, idx) => (
           <button
             key={idx}
             onClick={() => handleSendMessage(prompt)}
@@ -216,14 +233,14 @@ export const AiChatAgent = ({ isOpen, onClose }: AiChatAgentProps) => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Escribe tu consulta al agente..."
+          placeholder={t.agent.placeholder}
           className="flex-1 bg-cyber-bg border border-cyber-border rounded-lg px-3 py-2 text-xs text-cyber-text placeholder:text-cyber-text-muted focus:outline-none focus:ring-1 focus:ring-cyber-accent focus:border-cyber-accent font-mono"
         />
         <button
           type="submit"
           disabled={!input.trim() || isTyping}
           className="p-2 rounded-lg bg-cyber-accent text-cyber-accent-contrast disabled:opacity-40 hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-cyber-accent cursor-pointer"
-          aria-label="Enviar mensaje"
+          aria-label="Send message"
         >
           <Send className="w-4 h-4" />
         </button>

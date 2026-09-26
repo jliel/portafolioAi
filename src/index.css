@@ -37,10 +37,10 @@ body {
   background-color: var(--cyber-bg);
   color: var(--cyber-text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Custom scrollbars */
+/* Scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -55,4 +55,42 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cyber-border);
+}
+
+/* Directional tab sliding transitions */
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tab-slide-forward {
+  animation: slide-in-from-right 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tab-slide-backward {
+  animation: slide-in-from-left 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-slide-forward,
+  .tab-slide-backward {
+    animation: none !important;
+  }
 }

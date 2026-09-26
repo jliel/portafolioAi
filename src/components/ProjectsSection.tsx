@@ -1,67 +1,70 @@
-import { ExternalLink, Cpu, Layers } from 'lucide-react';
+import { ExternalLink, Cpu, Layers, Sparkles } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
-import type { Project } from '../types';
-
-const SAMPLE_PROJECTS: Project[] = [
-  {
-    id: 'multi-agent-audit',
-    title: 'Multi-Agent Code Auditor & Synthesizer',
-    description: 'Sistema coordinado de agentes especializados (Inspector de Seguridad, Optimizador de Rendimiento y Diseñador de Pruebas) que analizan repositorios de forma autónoma y generan Pull Requests con correcciones validadas.',
-    tags: ['LangGraph', 'Python', 'Gemini API', 'Docker', 'AST Parser'],
-    architectureDetails: 'Arquitectura jerárquica con Supervisor Agent y validación con sandbox aislado.',
-    repoUrl: 'https://github.com/jliel/portafolioAi',
-    highlight: true,
-  },
-  {
-    id: 'autonomous-researcher',
-    title: 'Autonomous Research & Fact-Checking Agent',
-    description: 'Agente autónomo con capacidad de razonamiento multi-paso (ReAct), navegación web, extracción estructurada de fuentes académicas y generación de reportes con citas verificadas.',
-    tags: ['CrewAI', 'LlamaIndex', 'FastAPI', 'ChromaDB', 'TypeScript'],
-    architectureDetails: 'Planificación dinámica, auto-reflexión y memoria episódica en base vectorial.',
-    repoUrl: 'https://github.com/jliel/portafolioAi',
-    highlight: true,
-  },
-  {
-    id: 'hybrid-rag-agent',
-    title: 'Enterprise Contextual RAG & Ops Assistant',
-    description: 'Pipeline conversacional para organizaciones que integra búsqueda híbrida (densa y esparsa BM25), reranking con Cohere y agentes resolutivos de tickets técnicos con escalamiento inteligente.',
-    tags: ['LangChain', 'Qdrant', 'React', 'FastAPI', 'Tailwind CSS'],
-    architectureDetails: 'Chunking semántico, reranker cross-encoder y guardrails de seguridad.',
-    repoUrl: 'https://github.com/jliel/portafolioAi',
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export const ProjectsSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="proyectos" className="py-20 border-b border-cyber-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-left space-y-3 mb-12">
+        <div className="text-left space-y-3 mb-10">
           <div className="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent">
             <Cpu className="w-4 h-4" />
-            <span>SHOWCASE // ARQUITECTURAS &amp; AGENTES</span>
+            <span>{t.projects.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-cyber-text tracking-tight">
-            Proyectos Destacados
+            {t.projects.title}
           </h2>
-          <p className="text-cyber-text-muted text-base max-w-2xl">
-            Soluciones reales construidas con arquitecturas agénticas, orquestación de LLMs y automatización inteligente.
+          <p className="text-cyber-text-muted text-base max-w-3xl">
+            {t.projects.subtitle}
           </p>
+        </div>
+
+        {/* Highlight Callout for the Recommended Agent Project */}
+        <div className="mb-10 p-5 rounded-xl border border-cyber-accent/40 bg-cyber-surface/90 text-left font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 text-cyber-accent font-bold">
+              <Sparkles className="w-4 h-4" />
+              <span>{t.projects.recommendedHeader}</span>
+            </div>
+            <p className="text-cyber-text-muted">
+              {t.projects.recommendedNotice}
+            </p>
+          </div>
+          <a
+            href="https://github.com/jliel/portafolioAi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyber-accent text-cyber-accent-contrast font-bold hover:opacity-90 transition-opacity"
+          >
+            <GithubIcon className="w-4 h-4" />
+            <span>GitHub Repo</span>
+          </a>
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SAMPLE_PROJECTS.map((project) => (
+          {t.projects.items.map((project) => (
             <article
               key={project.id}
-              className="rounded-xl border border-cyber-border bg-cyber-surface p-6 flex flex-col justify-between hover:border-cyber-accent transition-all duration-200 group text-left shadow-sm"
+              className={`rounded-xl border ${
+                project.highlight
+                  ? 'border-cyber-accent shadow-md bg-cyber-surface/90'
+                  : 'border-cyber-border bg-cyber-surface'
+              } p-6 flex flex-col justify-between hover:border-cyber-accent transition-all duration-200 group text-left`}
             >
               <div className="space-y-4">
                 {/* Highlight Badge */}
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-cyber-accent border border-cyber-border rounded px-2 py-0.5 bg-cyber-bg">
-                    {project.highlight ? '★ AGENT CORE' : 'PIPELINE'}
+                  <span className={`font-mono text-[11px] rounded px-2.5 py-0.5 border ${
+                    project.highlight
+                      ? 'bg-cyber-accent text-cyber-accent-contrast font-bold border-cyber-accent'
+                      : 'text-cyber-accent border-cyber-border bg-cyber-bg'
+                  }`}>
+                    {project.highlight ? t.projects.flagshipBadge : 'GITHUB SHOWCASE'}
                   </span>
                   <div className="flex items-center gap-2">
                     {project.repoUrl && (
@@ -70,7 +73,7 @@ export const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-cyber-text-muted hover:text-cyber-accent transition-colors p-1"
-                        aria-label={`Ver repositorio de ${project.title}`}
+                        aria-label={`${t.projects.repoLabel}: ${project.title}`}
                       >
                         <GithubIcon className="w-4 h-4" />
                       </a>
@@ -81,7 +84,7 @@ export const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-cyber-text-muted hover:text-cyber-accent transition-colors p-1"
-                        aria-label={`Ver demo de ${project.title}`}
+                        aria-label={`${t.projects.demoLabel}: ${project.title}`}
                       >
                         <ExternalLink className="w-4 h-4" />
                       </a>
