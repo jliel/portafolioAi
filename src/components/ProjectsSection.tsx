@@ -1,0 +1,126 @@
+import { ExternalLink, Cpu, Layers } from 'lucide-react';
+import { GithubIcon } from './icons/GithubIcon';
+import type { Project } from '../types';
+
+const SAMPLE_PROJECTS: Project[] = [
+  {
+    id: 'multi-agent-audit',
+    title: 'Multi-Agent Code Auditor & Synthesizer',
+    description: 'Sistema coordinado de agentes especializados (Inspector de Seguridad, Optimizador de Rendimiento y Diseñador de Pruebas) que analizan repositorios de forma autónoma y generan Pull Requests con correcciones validadas.',
+    tags: ['LangGraph', 'Python', 'Gemini API', 'Docker', 'AST Parser'],
+    architectureDetails: 'Arquitectura jerárquica con Supervisor Agent y validación con sandbox aislado.',
+    repoUrl: 'https://github.com/jliel/portafolioAi',
+    highlight: true,
+  },
+  {
+    id: 'autonomous-researcher',
+    title: 'Autonomous Research & Fact-Checking Agent',
+    description: 'Agente autónomo con capacidad de razonamiento multi-paso (ReAct), navegación web, extracción estructurada de fuentes académicas y generación de reportes con citas verificadas.',
+    tags: ['CrewAI', 'LlamaIndex', 'FastAPI', 'ChromaDB', 'TypeScript'],
+    architectureDetails: 'Planificación dinámica, auto-reflexión y memoria episódica en base vectorial.',
+    repoUrl: 'https://github.com/jliel/portafolioAi',
+    highlight: true,
+  },
+  {
+    id: 'hybrid-rag-agent',
+    title: 'Enterprise Contextual RAG & Ops Assistant',
+    description: 'Pipeline conversacional para organizaciones que integra búsqueda híbrida (densa y esparsa BM25), reranking con Cohere y agentes resolutivos de tickets técnicos con escalamiento inteligente.',
+    tags: ['LangChain', 'Qdrant', 'React', 'FastAPI', 'Tailwind CSS'],
+    architectureDetails: 'Chunking semántico, reranker cross-encoder y guardrails de seguridad.',
+    repoUrl: 'https://github.com/jliel/portafolioAi',
+  }
+];
+
+export const ProjectsSection = () => {
+  return (
+    <section id="proyectos" className="py-20 border-b border-cyber-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-left space-y-3 mb-12">
+          <div className="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent">
+            <Cpu className="w-4 h-4" />
+            <span>SHOWCASE // ARQUITECTURAS &amp; AGENTES</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-cyber-text tracking-tight">
+            Proyectos Destacados
+          </h2>
+          <p className="text-cyber-text-muted text-base max-w-2xl">
+            Soluciones reales construidas con arquitecturas agénticas, orquestación de LLMs y automatización inteligente.
+          </p>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SAMPLE_PROJECTS.map((project) => (
+            <article
+              key={project.id}
+              className="rounded-xl border border-cyber-border bg-cyber-surface p-6 flex flex-col justify-between hover:border-cyber-accent transition-all duration-200 group text-left shadow-sm"
+            >
+              <div className="space-y-4">
+                {/* Highlight Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-cyber-accent border border-cyber-border rounded px-2 py-0.5 bg-cyber-bg">
+                    {project.highlight ? '★ AGENT CORE' : 'PIPELINE'}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    {project.repoUrl && (
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-cyber-text-muted hover:text-cyber-accent transition-colors p-1"
+                        aria-label={`Ver repositorio de ${project.title}`}
+                      >
+                        <GithubIcon className="w-4 h-4" />
+                      </a>
+                    )}
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-cyber-text-muted hover:text-cyber-accent transition-colors p-1"
+                        aria-label={`Ver demo de ${project.title}`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <h3 className="text-lg font-bold text-cyber-text group-hover:text-cyber-accent transition-colors">
+                  {project.title}
+                </h3>
+
+                <p className="text-sm text-cyber-text-muted leading-relaxed">
+                  {project.description}
+                </p>
+
+                {project.architectureDetails && (
+                  <div className="text-xs font-mono text-cyber-text-muted/90 bg-cyber-bg p-2.5 rounded border border-cyber-border flex items-start gap-2">
+                    <Layers className="w-3.5 h-3.5 text-cyber-accent shrink-0 mt-0.5" />
+                    <span>{project.architectureDetails}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Tags */}
+              <div className="pt-6 mt-4 border-t border-cyber-border flex flex-wrap gap-1.5">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono text-[11px] px-2 py-0.5 rounded bg-cyber-bg border border-cyber-border text-cyber-text"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};

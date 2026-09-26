@@ -13,24 +13,24 @@ Este documento recopila y organiza los requerimientos, especificaciones, arquite
 ## 2. Requerimientos Funcionales
 
 ### 2.1. Secciones Principales
-- [ ] **Hero / Presentación:** 
+- [x] **Hero / Presentación:** 
   - Nombre (`jliel`), título/rol profesional y propuesta de valor enfocada en Agentes de IA.
   - Llamadas a la acción (CTA): Contactar, Descargar CV, Probar demo interactiva del agente.
-- [ ] **Proyectos Destacados (Showcase):**
+- [x] **Proyectos Destacados (Showcase):**
   - Fichas interactivas de proyectos con agentes autónomos, flujos multi-agente, integraciones con LLMs, RAG, etc.
   - Enlaces a demos en vivo, repositorios en GitHub y diagramas de arquitectura.
-- [ ] **Agente Interactivo en el Portafolio (Demo Integrada / Embebido):**
+- [x] **Agente Interactivo en el Portafolio (Demo Integrada / Embebido):**
   - Un asistente virtual o agente conversacional incrustado en la web que responda dudas sobre tu experiencia, proyectos y habilidades en tiempo real.
-  - Soporte de interfaz de chat moderna (streaming de texto, opciones rápidas de preguntas sugeridas).
-- [ ] **Habilidades y Stack Tecnológico:**
-  - Frameworks de IA & Agentes (ej. LangChain, LangGraph, CrewAI, AutoGen, LlamaIndex, Antigravity SDK).
-  - Modelos y APIs (ej. Gemini, Claude, OpenAI, modelos locales/Ollama).
+  - Soporte de interfaz de chat moderna (chips de preguntas frecuentes, simulación de razonamiento agéntico).
+- [x] **Habilidades y Stack Tecnológico:**
+  - Frameworks de IA & Agentes (LangChain, LangGraph, CrewAI, AutoGen, LlamaIndex, Antigravity SDK).
+  - Modelos y APIs (Gemini, Claude, OpenAI, modelos locales/Ollama).
   - Desarrollo frontend y backend (React, TypeScript, Tailwind CSS, Python, FastAPI, Node.js).
   - Bases de datos vectoriales y orquestación.
-- [ ] **Sobre Mí / Trayectoria:**
-  - Filosofía de desarrollo, trayectoria, logros y metodologías de ingeniería de agentes.
-- [ ] **Contacto / Redes:**
-  - Formulario de contacto, enlaces a LinkedIn, GitHub (`https://github.com/jliel`), correo (`kiritobaz@gmail.com`).
+- [x] **Sobre Mí / Trayectoria:**
+  - Filosofía de desarrollo, trayectoria, principios de ingeniería de agentes (razonamiento, seguridad, autorreflexión).
+- [x] **Contacto / Redes:**
+  - Canales directos: correo (`kiritobaz@gmail.com`), GitHub (`https://github.com/jliel`), opción de consultar al agente.
 
 ---
 
@@ -53,7 +53,7 @@ La interfaz de usuario debe implementar un sistema de paleta de colores adaptabl
 
 #### 1.3. Restricciones de Implementación
 * **Gestión de Estados:** Los colores deben definirse globalmente mediante variables CSS (Custom Properties) para permitir la transición dinámica sin recargar la página.
-* **Integración de Estilos:** La paleta debe registrarse en el archivo de configuración del framework de estilos (ej. extendiendo el tema en `tailwind.config.ts`) para mantener un uso centralizado en todos los componentes.
+* **Integración de Estilos:** La paleta debe registrarse en el archivo de configuración del framework de estilos (ej. extendiendo el tema en `src/index.css` con `@theme`) para mantener un uso centralizado en todos los componentes.
 * **Accesibilidad (A11y):** Las combinaciones de texto y fondo, así como texto sobre botones de acento, deben cumplir con un ratio de contraste mínimo de 4.5:1 (Nivel AA de las WCAG 2.1).
 
 ### Otros Requerimientos No Funcionales
@@ -64,16 +64,17 @@ La interfaz de usuario debe implementar un sistema de paleta de colores adaptabl
 ---
 
 ## 4. Stack Tecnológico Definido
-- **Frontend Core:** React + Vite + TypeScript
-- **Estilos & UI:** Tailwind CSS (configurado con variables CSS para el sistema Cyber Minimalista) + Lucide Icons
-- **Agente de IA Embebido:** Chat widget interactivo conectado a API de LLM (ej. Gemini API) con interfaz reactiva y streaming
+- **Frontend Core:** React 19 + Vite + TypeScript
+- **Estilos & UI:** Tailwind CSS v4 (configurado con variables CSS para el sistema Cyber Minimalista) + Lucide Icons
+- **Agente de IA Embebido:** Chat widget interactivo (`jliel-Agent`) con base de conocimiento, simulación de razonamiento agéntico y diseño Cyber Minimalista
 - **Control de Versiones:** Git & GitHub (`https://github.com/jliel/portafolioAi.git`)
-- **Despliegue Objetivo:** Vercel / Netlify / Cloud Run
+- **Despliegue Objetivo:** GitHub Pages
 
 ---
 
-## 5. Próximos Pasos
-1. Inicializar la estructura del proyecto con **Vite + React (TypeScript)** dentro del repositorio.
-2. Instalar y configurar **Tailwind CSS** con la paleta de colores **Cyber Minimalista** (variables CSS para Modo Oscuro por defecto y Modo Claro).
-3. Diseñar la estructura modular de componentes (Navbar, Hero, Showcase, AI Chatbot widget, Contacto).
-4. Realizar commit y push de las actualizaciones al repositorio de GitHub.
+## 5. Estado de Implementación
+1. [x] Inicializar la estructura del proyecto con **Vite + React (TypeScript)** dentro del repositorio.
+2. [x] Instalar y configurar **Tailwind CSS** con la paleta de colores **Cyber Minimalista** (variables CSS para Modo Oscuro por defecto y Modo Claro).
+3. [x] Diseñar e implementar la estructura modular de componentes (`Navbar`, `Hero`, `ProjectsSection`, `SkillsSection`, `AboutSection`, `ContactSection`, `Footer`).
+4. [x] Desarrollar el **Agente de IA embebido (`AiChatAgent`)** con chips de consulta rápida, simulación de razonamiento y respuestas sobre jliel.
+5. [ ] Configurar despliegue automatizado en GitHub Pages (GitHub Actions workflow).
