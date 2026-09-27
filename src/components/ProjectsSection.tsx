@@ -1,4 +1,4 @@
-import { ExternalLink, Cpu, Layers, Sparkles } from 'lucide-react';
+import { ExternalLink, Cpu, Layers } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
 import { useLanguage } from '../context/LanguageContext';
 
