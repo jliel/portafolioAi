@@ -1,6 +1,6 @@
 # Portafolio Profesional de Desarrollador - Juan Antonio (jliel)
 
-Este documento recopila y organiza los requerimientos, especificaciones, arquitectura y roadmap para la construcción del portafolio profesional de **Juan Antonio (jliel)**, enfocado en **Ingeniería de Software**, **Creación Web con Inteligencia Artificial** y **Desarrollo de Agentes de IA**.
+Este documento recopila y organiza los requerimientos, especificaciones, arquitectura y roadmap para la construcción del portafolio profesional de **Juan Antonio (jliel)**, enfocado en **Desarrollo de Software**, **Soluciones Web y de Escritorio**, **Patrones de Diseño** y **Buenas Prácticas de Ingeniería**, mencionando su proceso de aprendizaje continuo en **Inteligencia Artificial**.
 
 ---
 
@@ -9,46 +9,44 @@ Este documento recopila y organiza los requerimientos, especificaciones, arquite
   - **GitHub:** [https://github.com/jliel](https://github.com/jliel)
   - **Correo:** `kiritobaz@gmail.com`
   - **Idiomas:** Español (Nativo) e Inglés (Avanzado / Profesional).
-- **Actividad Actual:** Creación y maquetación de páginas web profesionales aprovechando herramientas de Inteligencia Artificial, adentrándose con rigor técnico en el ecosistema de **Agentes de IA**.
+- **Rol:** Desarrollador de Software // Web y Escritorio.
 - **Competencias Técnicas Reales:**
-  - **Dominio de Lenguajes:** Conoce a profundidad la sintaxis, buenas prácticas y paradigmas de los lenguajes que utiliza:
+  - **Dominio de Lenguajes:**
     - **TypeScript / JavaScript:** React 19, componentes reactivos, estado, Vite (`ShoppingCart`, `PetRegistry`, `notes-react`, `react-form-basis`).
     - **Python:** Scripts, lógica de datos, APIs, machine learning y procesamiento de imágenes (`red_neuronal`, `PDI`, `api_restaurante`, `todos_app`).
     - **C# / .NET:** Servicios backend y aplicaciones de escritorio (`learning_asp`, APIs con ASP.NET).
-    - **Java:** Programación orientada a objetos (POO), herencia, polimorfismo y algoritmos.
+    - **Java:** Programación orientada a objetos (POO), herencia, polimorfismo, algoritmos y software base.
     - **SQL:** Consultas relacionales, modelado y persistencia (PostgreSQL, SQLite).
   - **Ingeniería de Software & Arquitectura:**
-    - Conocimiento y aplicación de **Patrones de Diseño** clásicos (Singleton, Factory, Observer, etc.).
-    - Principios de **Arquitectura de Software** (separación de responsabilidades, MVC, diseño por capas, modularidad).
-    - **Documentación Técnica:** Experiencia documentando proyectos universitarios (especificaciones de requerimientos, diagramas de arquitectura y manuales técnicos).
-  - **Agentes de IA (Enfoque Honesto):**
-    - En proceso de aprendizaje y especialización práctica.
-    - Manejo de APIs de LLMs (Gemini, Claude, OpenAI), Structured Outputs, y diseño de flujos estructurados de trabajo agéntico sin inflar credenciales artificiales.
+    - Conocimiento y aplicación práctica de **Patrones de Diseño** (Singleton, Factory, Observer, etc.).
+    - Principios de **Arquitectura de Software** (separación de responsabilidades, diseño por capas, MVC, modularidad).
+    - **Documentación Técnica:** Experiencia documentando proyectos universitarios de software (especificaciones de requerimientos, diagramas de arquitectura y manuales de usuario/técnicos).
+  - **Inteligencia Artificial:**
+    - Uso de herramientas de IA en el flujo de trabajo web.
+    - Actualmente aprendiendo y explorando de forma activa el desarrollo con modelos y agentes de IA.
 
 ---
 
-## 2. Proyecto con Agentes Recomendado: "WebCrafter Studio"
-### 2.1. Justificación y Propuesta de Valor Realista
-- **¿Por qué este proyecto?** Se alinea exactamente con su trabajo actual (*creación de sitios web con IA*) pero lo formaliza mediante una arquitectura estructurada y demostrable. En lugar de fingir años de experiencia en agentes, este proyecto demuestra cómo un desarrollador con bases sólidas en software puede diseñar un sistema de agentes funcional.
-- **Flujo del Sistema:**
-  1. **Supervisor / Planificador:** Recibe la descripción de la web a construir y genera la especificación de componentes.
-  2. **Generador de Componentes (React + Tailwind):** Escribe el código tipado en TypeScript.
-  3. **Revisor de Accesibilidad y Sintaxis:** Evalúa el código antes de mostrar el resultado en un visor interactivo.
+## 2. Proyectos Reales en Showcase
+Se presentan exclusivamente proyectos reales y verificables en su cuenta de GitHub:
+1. **ShoppingCart (TypeScript & React):** Aplicación e-commerce con gestión desacoplada de estado y tipado estricto.
+2. **PetRegistry (Frontend / Mobile-First):** Sistema de administración y formularios controlados con validación reactiva en tiempo real.
+3. **Servicios Backend en C# y ASP.NET:** Desarrollo de servicios backend con inyección de dependencias y controladores RESTful.
+4. **Red Neuronal & Procesamiento Digital de Imágenes (Python):** Cálculos matriciales vectorizados con NumPy y modelos matemáticos.
+5. **Fundamentos de Algoritmia & Ciencias de la Computación (CS50):** Estructuras de datos (árboles, tablas hash, listas) y optimización de complejidad temporal y memoria.
+6. **Notes & Form Foundation (React + TS):** Componentes modulares reutilizables y manejo predecible de eventos.
 
 ---
 
 ## 3. Requerimientos Funcionales Implementados
 
 ### 3.1. Secciones y Estructura
-- [x] **Hero / Presentación:** Mensaje transparente sobre su experiencia en software, creación web con IA y evolución hacia agentes; terminal de perfil técnico y llamadas a la acción directas.
-- [x] **Showcase de Proyectos:**
-  - Proyecto agéntico objetivo: **WebCrafter Studio**.
-  - Proyectos reales de GitHub: `ShoppingCart` (TypeScript), `PetRegistry` (Mobile-First), `learning_asp` (C#), `red_neuronal` / `PDI` (Python), `cs50_projects` (Algoritmia y Ciencias de la Computación).
-- [x] **Asistente Virtual del Portafolio (`jliel-Agent`):**
+- [x] **Hero / Presentación:** Titular enfocado en Desarrollo de Software (Web y Escritorio), terminal técnica y botones directos a proyectos y asistente virtual.
+- [x] **Showcase de Proyectos:** 6 proyectos reales de GitHub con tags técnicos, detalles arquitectónicos y enlaces a sus repositorios.
+- [x] **Asistente Virtual del Portafolio (`jliel-Assistant`):**
   - Chat interactivo modal y flotante.
-  - Base de conocimiento bilingüe adaptada a su experiencia real (Java, C#, TS, Python, patrones de diseño, documentación, nivel de inglés).
-  - Chips de preguntas sugeridas.
-- [x] **Habilidades & Competencias:** Clasificadas en Lenguajes Dominados, Ingeniería de Software & Buenas Prácticas, Creación Web con IA, y Agentes & Idiomas.
+  - Base de conocimiento bilingüe adaptada a su experiencia real (Java, C#, TS, Python, patrones de diseño, documentación, nivel de inglés y aprendizaje de IA).
+- [x] **Habilidades & Competencias:** Clasificadas en Lenguajes Dominados, Ingeniería de Software & Arquitectura, Desarrollo Web & Frontend, y Aprendizaje Activo & Idiomas.
 - [x] **Sobre Mí & Trayectoria:** Detalle del enfoque en código limpio, patrones de diseño, documentación y perfil bilingüe.
 - [x] **Contacto Directo:** Correo `kiritobaz@gmail.com` con botón de copia rápida y enlace a GitHub.
 

@@ -1,4 +1,4 @@
-import { Bot, ArrowRight, Sparkles, Terminal, Code2 } from 'lucide-react';
+import { ArrowRight, Terminal, Code2, MessageSquare } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -44,20 +44,19 @@ export const Hero = ({ onOpenChat, onNavigateToProjects }: HeroProps) => {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
-                onClick={onOpenChat}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm font-semibold uppercase tracking-wider bg-cyber-accent text-cyber-accent-contrast shadow-sm hover:opacity-95 transition-all focus:outline-none focus:ring-2 focus:ring-cyber-accent cursor-pointer"
-              >
-                <Bot className="w-4 h-4" />
-                <span>{t.hero.ctaAgent}</span>
-                <Sparkles className="w-3.5 h-3.5 ml-1" />
-              </button>
-
-              <button
                 onClick={onNavigateToProjects}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm font-medium border border-cyber-border bg-cyber-surface text-cyber-text hover:border-cyber-accent transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm font-semibold uppercase tracking-wider bg-cyber-accent text-cyber-accent-contrast shadow-sm hover:opacity-95 transition-all focus:outline-none focus:ring-2 focus:ring-cyber-accent cursor-pointer"
               >
                 <span>{t.hero.ctaProjects}</span>
                 <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={onOpenChat}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-mono text-sm font-medium border border-cyber-border bg-cyber-surface text-cyber-text hover:border-cyber-accent transition-colors cursor-pointer"
+              >
+                <MessageSquare className="w-4 h-4 text-cyber-accent" />
+                <span>{t.hero.ctaAgent}</span>
               </button>
 
               <a
@@ -73,7 +72,7 @@ export const Hero = ({ onOpenChat, onNavigateToProjects }: HeroProps) => {
             </div>
           </div>
 
-          {/* Right Column: Cyber Agent Terminal Card */}
+          {/* Right Column: Developer Profile Terminal Card */}
           <div className="lg:col-span-5">
             <div className="rounded-xl border border-cyber-border bg-cyber-surface overflow-hidden shadow-xl text-left font-mono text-xs">
               {/* Terminal Title Bar */}
@@ -87,7 +86,7 @@ export const Hero = ({ onOpenChat, onNavigateToProjects }: HeroProps) => {
                 <Terminal className="w-3.5 h-3.5 text-cyber-text-muted" />
               </div>
 
-              {/* Code / Agent Log simulation */}
+              {/* Terminal content */}
               <div className="p-4 space-y-2.5 overflow-x-auto">
                 <div className="text-cyber-text-muted flex items-center gap-2">
                   <Code2 className="w-3.5 h-3.5 text-cyber-accent" />

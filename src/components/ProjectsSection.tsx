@@ -1,4 +1,4 @@
-import { ExternalLink, Cpu, Layers, Sparkles } from 'lucide-react';
+import { ExternalLink, Cpu, Layers } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -10,7 +10,7 @@ export const ProjectsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-left space-y-3 mb-10">
+        <div className="text-left space-y-3 mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent">
             <Cpu className="w-4 h-4" />
             <span>{t.projects.badge}</span>
@@ -23,48 +23,18 @@ export const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Highlight Callout for the Recommended Agent Project */}
-        <div className="mb-10 p-5 rounded-xl border border-cyber-accent/40 bg-cyber-surface/90 text-left font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-cyber-accent font-bold">
-              <Sparkles className="w-4 h-4" />
-              <span>{t.projects.recommendedHeader}</span>
-            </div>
-            <p className="text-cyber-text-muted">
-              {t.projects.recommendedNotice}
-            </p>
-          </div>
-          <a
-            href="https://github.com/jliel/portafolioAi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyber-accent text-cyber-accent-contrast font-bold hover:opacity-90 transition-opacity"
-          >
-            <GithubIcon className="w-4 h-4" />
-            <span>GitHub Repo</span>
-          </a>
-        </div>
-
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {t.projects.items.map((project) => (
             <article
               key={project.id}
-              className={`rounded-xl border ${
-                project.highlight
-                  ? 'border-cyber-accent shadow-md bg-cyber-surface/90'
-                  : 'border-cyber-border bg-cyber-surface'
-              } p-6 flex flex-col justify-between hover:border-cyber-accent transition-all duration-200 group text-left`}
+              className="rounded-xl border border-cyber-border bg-cyber-surface p-6 flex flex-col justify-between hover:border-cyber-accent transition-all duration-200 group text-left shadow-xs"
             >
               <div className="space-y-4">
-                {/* Highlight Badge */}
+                {/* Category Badge */}
                 <div className="flex items-center justify-between">
-                  <span className={`font-mono text-[11px] rounded px-2.5 py-0.5 border ${
-                    project.highlight
-                      ? 'bg-cyber-accent text-cyber-accent-contrast font-bold border-cyber-accent'
-                      : 'text-cyber-accent border-cyber-border bg-cyber-bg'
-                  }`}>
-                    {project.highlight ? t.projects.flagshipBadge : 'GITHUB SHOWCASE'}
+                  <span className="font-mono text-[11px] rounded px-2.5 py-0.5 border text-cyber-accent border-cyber-border bg-cyber-bg">
+                    {project.categoryBadge}
                   </span>
                   <div className="flex items-center gap-2">
                     {project.repoUrl && (
