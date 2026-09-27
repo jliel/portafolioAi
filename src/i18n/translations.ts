@@ -144,7 +144,7 @@ export const translations: Record<Language, TranslationContent> = {
     },
     projects: {
       badge: 'PROYECTOS // EXPERIENCIA REAL & EXPLORACIÓN',
-      title: 'Proyectos Desarrollados & Proyecto Propuesto',
+      title: 'Proyectos Desarrollados',
       subtitle: 'Una muestra transparente de mis desarrollos reales en TypeScript, Python, C# y React, junto a mi proyecto planificado con agentes de IA.',
       flagshipBadge: '★ PROYECTO OBJETIVO (AGENTE DE IA)',
       repoLabel: 'Ver código en GitHub',
@@ -153,15 +153,6 @@ export const translations: Record<Language, TranslationContent> = {
       recommendedHeader: 'Proyecto con Agentes en Desarrollo:',
       recommendedNotice: 'Este proyecto fue diseñado específicamente para combinar mi experiencia real en maquetación web con IA, TypeScript y Python hacia una arquitectura multi-agente.',
       items: [
-        {
-          id: 'webcrafter-agent',
-          title: 'WebCrafter Studio: Generador Web Multi-Agente',
-          description: 'Proyecto agéntico en desarrollo: toma requerimientos en lenguaje natural y coordina agentes especializados (Planificador de UX, Generador de componentes React y Revisor de Accesibilidad/Linter) para producir sitios web funcionales.',
-          tags: ['Python', 'TypeScript', 'React 19', 'Gemini API', 'Patrones de Diseño'],
-          architectureDetails: 'Patrón Supervisor y bucle de validación sintáctica/accesibilidad antes de generar el preview.',
-          repoUrl: 'https://github.com/jliel/portafolioAi',
-          highlight: true,
-        },
         {
           id: 'shopping-cart-ts',
           title: 'ShoppingCart (TypeScript & React)',
